@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppStore } from '../../store/useAppStore';
 
 const pageTitles: Record<string, string> = {
@@ -8,20 +8,22 @@ const pageTitles: Record<string, string> = {
   '/settings': 'Settings',
 };
 
-const NOTIFICATIONS = [
-  { id: 1, title: 'Revenue milestone hit', body: 'Monthly revenue crossed $140K', time: '2m ago', unread: true },
-  { id: 2, title: 'Conversion rate drop', body: 'Conversion fell 0.3% vs last week', time: '1h ago', unread: true },
-  { id: 3, title: 'New report ready', body: 'Q1 traffic analysis is available', time: '3h ago', unread: false },
-  { id: 4, title: 'User spike detected', body: 'Active users +18% in last hour', time: '5h ago', unread: false },
+const INITIAL_NOTIFICATIONS = [
+  { id: 1, title: 'Revenue milestone hit', body: 'Monthly revenue crossed $140K', time: '2m ago', unread: true, route: '/analytics' },
+  { id: 2, title: 'Conversion rate drop', body: 'Conversion fell 0.3% vs last week', time: '1h ago', unread: true, route: '/analytics' },
+  { id: 3, title: 'New report ready', body: 'Q1 traffic analysis is available', time: '3h ago', unread: false, route: '/reports' },
+  { id: 4, title: 'User spike detected', body: 'Active users +18% in last hour', time: '5h ago', unread: false, route: '/analytics' },
 ];
 
 export default function TopBar() {
   const { toggleSidebar, toggleChat, isChatOpen } = useAppStore();
   const location = useLocation();
+  const navigate = useNavigate();
   const title = pageTitles[location.pathname] ?? 'Dashboard';
 
   const [notifOpen, setNotifOpen] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
+  const [notifications, setNotifications] = useState(INITIAL_NOTIFICATIONS);
   const notifRef = useRef<HTMLDivElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
 
@@ -35,7 +37,17 @@ export default function TopBar() {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  const unreadCount = NOTIFICATIONS.filter(n => n.unread).length;
+  const unreadCount = notifications.filter(n => n.unread).length;
+
+  function handleNotifClick(id: number, route: string) {
+    setNotifications(prev => prev.map(n => n.id === id ? { ...n, unread: false } : n));
+    setNotifOpen(false);
+    navigate(route);
+  }
+
+  function markAllRead() {
+    setNotifications(prev => prev.map(n => ({ ...n, unread: false })));
+  }
 
   return (
     <header
@@ -109,20 +121,29 @@ export default function TopBar() {
             >
               <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800">
                 <span className="text-slate-200 font-semibold text-sm">Notifications</span>
-                <span className="text-xs text-blue-400 cursor-pointer hover:underline">Mark all read</span>
+                {unreadCount > 0 && (
+                  <button onClick={markAllRead} className="text-xs text-blue-400 hover:underline cursor-pointer" type="button">
+                    Mark all read
+                  </button>
+                )}
               </div>
-              {NOTIFICATIONS.map(n => (
-                <div key={n.id} className={`px-4 py-3 border-b border-slate-800 hover:bg-slate-800 cursor-pointer transition-colors last:border-0 ${n.unread ? 'bg-slate-800/40' : ''}`} role="menuitem">
+              {notifications.map(n => (
+                <button
+                  key={n.id}
+                  onClick={() => handleNotifClick(n.id, n.route)}
+                  className={`w-full px-4 py-3 border-b border-slate-800 hover:bg-slate-800 cursor-pointer transition-colors last:border-0 text-left ${n.unread ? 'bg-slate-800/40' : ''}`}
+                  role="menuitem"
+                  type="button"
+                >
                   <div className="flex items-start gap-3">
-                    {n.unread && <span className="w-2 h-2 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />}
-                    {!n.unread && <span className="w-2 h-2 mt-1.5 flex-shrink-0" />}
+                    <span className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${n.unread ? 'bg-blue-500' : 'bg-transparent'}`} />
                     <div>
-                      <p className="text-slate-200 text-sm font-medium">{n.title}</p>
+                      <p className={`text-sm font-medium ${n.unread ? 'text-slate-100' : 'text-slate-400'}`}>{n.title}</p>
                       <p className="text-slate-500 text-xs mt-0.5">{n.body}</p>
                       <p className="text-slate-600 text-xs mt-1">{n.time}</p>
                     </div>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           )}
@@ -157,16 +178,27 @@ export default function TopBar() {
                 <p className="text-slate-500 text-xs">jane@streamline.ai</p>
               </div>
               {[
-                { label: 'Profile Settings', icon: '👤' },
-                { label: 'Preferences', icon: '⚙️' },
-                { label: 'Help & Docs', icon: '📖' },
+                { label: 'Profile Settings', icon: '👤', route: '/settings' },
+                { label: 'Preferences', icon: '⚙️', route: '/settings' },
+                { label: 'Help & Docs', icon: '📖', route: '/reports' },
               ].map(item => (
-                <button key={item.label} className="w-full flex items-center gap-2 px-4 py-2.5 text-slate-300 hover:bg-slate-800 transition-colors text-sm text-left" role="menuitem" type="button">
+                <button
+                  key={item.label}
+                  onClick={() => { setUserOpen(false); navigate(item.route); }}
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-slate-300 hover:bg-slate-800 transition-colors text-sm text-left"
+                  role="menuitem"
+                  type="button"
+                >
                   <span>{item.icon}</span>{item.label}
                 </button>
               ))}
               <div className="border-t border-slate-800">
-                <button className="w-full flex items-center gap-2 px-4 py-2.5 text-red-400 hover:bg-slate-800 transition-colors text-sm text-left" role="menuitem" type="button">
+                <button
+                  onClick={() => { setUserOpen(false); window.location.reload(); }}
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-red-400 hover:bg-slate-800 transition-colors text-sm text-left"
+                  role="menuitem"
+                  type="button"
+                >
                   <span>🚪</span>Sign Out
                 </button>
               </div>
