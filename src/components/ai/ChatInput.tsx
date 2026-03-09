@@ -37,7 +37,7 @@ export default function ChatInput({ onSend, disabled = false }: Props) {
     <div
       className="flex items-end gap-2 p-3 rounded-xl border"
       style={{
-        backgroundColor: '#1e293b',
+        backgroundColor: '#f1f5f9',
         borderColor: '#334155',
       }}
       onFocus={() => {

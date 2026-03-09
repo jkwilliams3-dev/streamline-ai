@@ -13,7 +13,7 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
     <div
       className="rounded-lg p-3 text-sm"
       style={{
-        backgroundColor: '#0f172a',
+        backgroundColor: '#ffffff',
         border: '1px solid #334155',
         boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
       }}
@@ -43,7 +43,7 @@ export default function DeviceChart() {
     >
       <div className="mb-4">
         <h3 className="text-base font-semibold text-white">Device Breakdown</h3>
-        <p className="text-sm text-slate-500 mt-0.5">Sessions by device type</p>
+        <p className="text-sm text-gray-500 mt-0.5">Sessions by device type</p>
       </div>
 
       <div className="flex items-center gap-6">
@@ -76,7 +76,7 @@ export default function DeviceChart() {
             className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
           >
             <span className="text-2xl font-bold text-white">{total}%</span>
-            <span className="text-xs text-slate-500">Total</span>
+            <span className="text-xs text-gray-500">Total</span>
           </div>
         </div>
 

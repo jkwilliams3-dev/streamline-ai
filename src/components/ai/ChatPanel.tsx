@@ -71,23 +71,23 @@ export default function ChatPanel() {
 
   return (
     <div
-      className="flex flex-col border-l border-slate-800"
+      className="flex flex-col border-l border-gray-200"
       style={{
         width: '360px',
         flexShrink: 0,
-        backgroundColor: '#0d1117',
+        backgroundColor: '#f8fafc',
         height: '100%',
         overflow: 'hidden',
       }}
     >
       {/* Header */}
       <div
-        className="flex items-center justify-between px-5 py-4 border-b border-slate-800"
+        className="flex items-center justify-between px-5 py-4 border-b border-gray-200"
         style={{ flexShrink: 0 }}
       >
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
-            <span className="font-semibold text-white">AI Assistant</span>
+            <span className="font-semibold text-gray-900">AI Assistant</span>
             <span
               className="w-2 h-2 rounded-full"
               style={{ backgroundColor: '#6366f1' }}
@@ -99,7 +99,7 @@ export default function ChatPanel() {
           {messages.length > 0 && (
             <button
               onClick={clearMessages}
-              className="text-xs text-slate-500 hover:text-slate-300 transition-colors px-2 py-1 rounded"
+              className="text-xs text-gray-500 hover:text-slate-300 transition-colors px-2 py-1 rounded"
               title="Clear conversation"
             >
               Clear
@@ -107,7 +107,7 @@ export default function ChatPanel() {
           )}
           <button
             onClick={toggleChat}
-            className="text-slate-400 hover:text-slate-200 p-1.5 rounded-lg hover:bg-slate-800 transition-colors"
+            className="text-gray-500 hover:text-gray-500 p-1.5 rounded-lg hover:bg-gray-100 transition-colors"
             aria-label="Close AI panel"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -125,13 +125,13 @@ export default function ChatPanel() {
             {/* Welcome */}
             <div className="text-center mb-6 mt-2">
               <div
-                className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-base mx-auto mb-3"
+                className="w-12 h-12 rounded-full flex items-center justify-center text-gray-900 font-bold text-base mx-auto mb-3"
                 style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
               >
                 AI
               </div>
-              <h4 className="text-white font-semibold mb-1">StreamlineAI Assistant</h4>
-              <p className="text-slate-500 text-sm">Ask me anything about your dashboard data.</p>
+              <h4 className="text-gray-900 font-semibold mb-1">StreamlineAI Assistant</h4>
+              <p className="text-gray-500 text-sm">Ask me anything about your dashboard data.</p>
             </div>
 
             {/* Conversation starters */}
@@ -169,7 +169,7 @@ export default function ChatPanel() {
         {isAIThinking && (
           <div className="flex gap-3 mb-4">
             <div
-              className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0 mt-0.5"
+              className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-gray-900 flex-shrink-0 mt-0.5"
               style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
             >
               AI
@@ -189,7 +189,7 @@ export default function ChatPanel() {
       </div>
 
       {/* Footer input */}
-      <div className="p-4 border-t border-slate-800" style={{ flexShrink: 0 }}>
+      <div className="p-4 border-t border-gray-200" style={{ flexShrink: 0 }}>
         <ChatInput onSend={handleSend} disabled={isAIThinking} />
         <p className="text-center text-xs text-slate-600 mt-2">
           Powered by StreamlineAI • Shift+Enter for newline

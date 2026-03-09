@@ -70,9 +70,9 @@ export default function TransactionsTable({ allRows = false, filterStatus = 'all
         borderColor: 'rgba(51, 65, 85, 0.5)',
       }}
     >
-      <div className="px-6 py-5 border-b border-slate-800">
+      <div className="px-6 py-5 border-b border-gray-200">
         <h3 className="text-base font-semibold text-white">Recent Transactions</h3>
-        <p className="text-sm text-slate-500 mt-0.5">{filtered.length} transactions total</p>
+        <p className="text-sm text-gray-500 mt-0.5">{filtered.length} transactions total</p>
       </div>
 
       <div className="overflow-x-auto">
@@ -105,13 +105,13 @@ export default function TransactionsTable({ allRows = false, filterStatus = 'all
                     (e.currentTarget as HTMLTableRowElement).style.backgroundColor = 'transparent';
                   }}
                 >
-                  <td className="px-6 py-4 text-slate-400 whitespace-nowrap">
+                  <td className="px-6 py-4 text-gray-500 whitespace-nowrap">
                     {formatDate(tx.date)}
                   </td>
-                  <td className="px-6 py-4 text-slate-200 font-medium whitespace-nowrap">
+                  <td className="px-6 py-4 text-gray-900 font-medium whitespace-nowrap">
                     {tx.customer}
                   </td>
-                  <td className="px-6 py-4 text-slate-400 whitespace-nowrap">
+                  <td className="px-6 py-4 text-gray-500 whitespace-nowrap">
                     {tx.company}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -154,7 +154,7 @@ export default function TransactionsTable({ allRows = false, filterStatus = 'all
           className="px-6 py-4 flex items-center justify-between border-t"
           style={{ borderColor: 'rgba(51,65,85,0.5)' }}
         >
-          <span className="text-sm text-slate-500">
+          <span className="text-sm text-gray-500">
             Showing {page * PAGE_SIZE + 1}–{Math.min((page + 1) * PAGE_SIZE, filtered.length)} of{' '}
             {filtered.length}
           </span>
@@ -165,7 +165,7 @@ export default function TransactionsTable({ allRows = false, filterStatus = 'all
               className="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
               style={{
                 backgroundColor: 'rgba(51,65,85,0.5)',
-                color: '#94a3b8',
+                color: '#64748b',
                 border: '1px solid rgba(71,85,105,0.5)',
               }}
             >
@@ -177,7 +177,7 @@ export default function TransactionsTable({ allRows = false, filterStatus = 'all
               className="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
               style={{
                 backgroundColor: 'rgba(51,65,85,0.5)',
-                color: '#94a3b8',
+                color: '#64748b',
                 border: '1px solid rgba(71,85,105,0.5)',
               }}
             >

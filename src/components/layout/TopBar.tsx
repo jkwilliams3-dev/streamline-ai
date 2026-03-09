@@ -51,24 +51,24 @@ export default function TopBar() {
 
   return (
     <header
-      className="flex items-center justify-between px-5 border-b border-slate-800"
-      style={{ height: '64px', flexShrink: 0, backgroundColor: '#0f1117', position: 'relative', zIndex: 40 }}
+      className="flex items-center justify-between px-5 border-b border-gray-200"
+      style={{ height: '64px', flexShrink: 0, backgroundColor: '#ffffff', position: 'relative', zIndex: 40 }}
     >
       {/* Left */}
       <div className="flex items-center gap-3">
         <button
           onClick={toggleSidebar}
-          className="text-slate-400 hover:text-slate-200 p-2 rounded-lg hover:bg-slate-800 transition-colors"
+          className="text-gray-500 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100 transition-colors"
           aria-label="Toggle sidebar"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </button>
-        <div className="flex items-center gap-2 text-sm text-slate-500">
+        <div className="flex items-center gap-2 text-sm text-gray-400">
           <span>Pulse</span>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
-          <span className="text-slate-200 font-medium">{title}</span>
+          <span className="text-gray-900 font-medium">{title}</span>
         </div>
       </div>
 
@@ -80,7 +80,7 @@ export default function TopBar() {
           className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer"
           style={{
             background: isChatOpen ? 'rgba(47,129,247,0.15)' : 'transparent',
-            color: isChatOpen ? '#2f81f7' : '#94a3b8',
+            color: isChatOpen ? '#2f81f7' : '#64748b',
             border: isChatOpen ? '1px solid rgba(47,129,247,0.4)' : '1px solid rgba(255,255,255,0.06)',
             zIndex: 1,
           }}
@@ -98,7 +98,7 @@ export default function TopBar() {
         <div ref={notifRef} style={{ position: 'relative' }}>
           <button
             onClick={() => { setNotifOpen(o => !o); setUserOpen(false); }}
-            className="relative p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors cursor-pointer"
+            className="relative p-2 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-colors cursor-pointer"
             aria-label={`Notifications (${unreadCount} unread)`}
             aria-haspopup="true"
             aria-expanded={notifOpen}
@@ -115,12 +115,12 @@ export default function TopBar() {
 
           {notifOpen && (
             <div
-              className="absolute right-0 mt-2 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl"
+              className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl"
               style={{ width: '320px', zIndex: 100, top: '100%' }}
               role="menu"
             >
-              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800">
-                <span className="text-slate-200 font-semibold text-sm">Notifications</span>
+              <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+                <span className="text-gray-900 font-semibold text-sm">Notifications</span>
                 {unreadCount > 0 && (
                   <button onClick={markAllRead} className="text-xs text-blue-400 hover:underline cursor-pointer" type="button">
                     Mark all read
@@ -131,15 +131,15 @@ export default function TopBar() {
                 <button
                   key={n.id}
                   onClick={() => handleNotifClick(n.id, n.route)}
-                  className={`w-full px-4 py-3 border-b border-slate-800 hover:bg-slate-800 cursor-pointer transition-colors last:border-0 text-left ${n.unread ? 'bg-slate-800/40' : ''}`}
+                  className={`w-full px-4 py-3 border-b border-gray-200 hover:bg-gray-100 cursor-pointer transition-colors last:border-0 text-left ${n.unread ? 'bg-gray-100/40' : ''}`}
                   role="menuitem"
                   type="button"
                 >
                   <div className="flex items-start gap-3">
                     <span className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${n.unread ? 'bg-blue-500' : 'bg-transparent'}`} />
                     <div>
-                      <p className={`text-sm font-medium ${n.unread ? 'text-slate-100' : 'text-slate-400'}`}>{n.title}</p>
-                      <p className="text-slate-500 text-xs mt-0.5">{n.body}</p>
+                      <p className={`text-sm font-medium ${n.unread ? 'text-gray-900' : 'text-gray-500'}`}>{n.title}</p>
+                      <p className="text-gray-400 text-xs mt-0.5">{n.body}</p>
                       <p className="text-slate-600 text-xs mt-1">{n.time}</p>
                     </div>
                   </div>
@@ -153,13 +153,13 @@ export default function TopBar() {
         <div ref={userRef} style={{ position: 'relative' }}>
           <button
             onClick={() => { setUserOpen(o => !o); setNotifOpen(false); }}
-            className="flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
             aria-label="User menu"
             aria-haspopup="true"
             aria-expanded={userOpen}
             type="button"
           >
-            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold bg-blue-600">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center text-gray-900 text-xs font-bold bg-blue-600">
               JD
             </div>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2">
@@ -169,13 +169,13 @@ export default function TopBar() {
 
           {userOpen && (
             <div
-              className="absolute right-0 mt-2 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl overflow-hidden"
+              className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden"
               style={{ width: '200px', zIndex: 100, top: '100%' }}
               role="menu"
             >
-              <div className="px-4 py-3 border-b border-slate-800">
-                <p className="text-slate-200 text-sm font-semibold">Jane Doe</p>
-                <p className="text-slate-500 text-xs">jane@streamline.ai</p>
+              <div className="px-4 py-3 border-b border-gray-200">
+                <p className="text-gray-900 text-sm font-semibold">Jane Doe</p>
+                <p className="text-gray-400 text-xs">jane@streamline.ai</p>
               </div>
               {[
                 { label: 'Profile Settings', icon: '👤', route: '/settings' },
@@ -185,17 +185,17 @@ export default function TopBar() {
                 <button
                   key={item.label}
                   onClick={() => { setUserOpen(false); navigate(item.route); }}
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-slate-300 hover:bg-slate-800 transition-colors text-sm text-left"
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-gray-700 hover:bg-gray-100 transition-colors text-sm text-left"
                   role="menuitem"
                   type="button"
                 >
                   <span>{item.icon}</span>{item.label}
                 </button>
               ))}
-              <div className="border-t border-slate-800">
+              <div className="border-t border-gray-200">
                 <button
                   onClick={() => { setUserOpen(false); window.location.reload(); }}
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-red-400 hover:bg-slate-800 transition-colors text-sm text-left"
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-red-400 hover:bg-gray-100 transition-colors text-sm text-left"
                   role="menuitem"
                   type="button"
                 >

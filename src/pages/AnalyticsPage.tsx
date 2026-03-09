@@ -12,7 +12,7 @@ export default function AnalyticsPage() {
       <div className="flex flex-wrap items-start justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-white">Analytics Dashboard</h1>
-          <p className="text-slate-500 mt-1">Track your key metrics and performance</p>
+          <p className="text-gray-500 mt-1">Track your key metrics and performance</p>
         </div>
         <div
           className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium"

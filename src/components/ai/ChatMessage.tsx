@@ -46,7 +46,7 @@ export default function ChatMessage({ message }: Props) {
         <div
           className="px-4 py-3 rounded-2xl rounded-bl-sm text-sm"
           style={{
-            backgroundColor: '#1e293b',
+            backgroundColor: '#f1f5f9',
             color: '#cbd5e1',
             lineHeight: 1.6,
           }}

@@ -61,7 +61,7 @@ export default function KPICard({ metric, delay = 0 }: Props) {
       >
         {/* Top row */}
         <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-medium text-slate-400">{metric.label}</span>
+          <span className="text-sm font-medium text-gray-500">{metric.label}</span>
           <div
             className="w-10 h-10 rounded-lg flex items-center justify-center"
             style={{
@@ -100,7 +100,7 @@ export default function KPICard({ metric, delay = 0 }: Props) {
             )}
             {metric.changeLabel}
           </span>
-          <span className="text-xs text-slate-500">vs last month</span>
+          <span className="text-xs text-gray-500">vs last month</span>
         </div>
       </div>
     </div>

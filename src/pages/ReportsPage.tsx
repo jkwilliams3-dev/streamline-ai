@@ -61,9 +61,9 @@ export default function ReportsPage() {
   };
 
   const inputStyle = {
-    backgroundColor: '#1e293b',
+    backgroundColor: '#e2e8f0',
     border: '1px solid #334155',
-    color: '#e2e8f0',
+    color: '#1e293b',
     borderRadius: '8px',
     padding: '8px 12px',
     fontSize: '14px',
@@ -84,7 +84,7 @@ export default function ReportsPage() {
       <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-white">Reports</h1>
-          <p className="text-slate-500 mt-1">Transaction history and financial summaries</p>
+          <p className="text-gray-500 mt-1">Transaction history and financial summaries</p>
         </div>
         <button
           onClick={handleDownloadCSV}
@@ -123,7 +123,7 @@ export default function ReportsPage() {
         style={summaryCardStyle}
       >
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-medium text-slate-400">Start Date</label>
+          <label className="text-xs font-medium text-gray-500">Start Date</label>
           <input
             type="date"
             value={startDate}
@@ -132,7 +132,7 @@ export default function ReportsPage() {
           />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-medium text-slate-400">End Date</label>
+          <label className="text-xs font-medium text-gray-500">End Date</label>
           <input
             type="date"
             value={endDate}
@@ -141,7 +141,7 @@ export default function ReportsPage() {
           />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-medium text-slate-400">Status</label>
+          <label className="text-xs font-medium text-gray-500">Status</label>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as Transaction['status'] | 'all')}
@@ -168,7 +168,7 @@ export default function ReportsPage() {
             style={summaryCardStyle}
           >
             <div className="flex items-center justify-between mb-3">
-              <span className="text-sm text-slate-400">{card.label}</span>
+              <span className="text-sm text-gray-500">{card.label}</span>
               <span
                 className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold"
                 style={{ backgroundColor: `${card.color}20`, color: card.color }}

@@ -56,11 +56,11 @@ export default function SettingsPage() {
 
   const inputStyle = {
     width: '100%',
-    backgroundColor: '#1e293b',
+    backgroundColor: '#e2e8f0',
     border: '1px solid #334155',
     borderRadius: '8px',
     padding: '10px 14px',
-    color: '#e2e8f0',
+    color: '#1e293b',
     fontSize: '14px',
     outline: 'none',
     transition: 'border-color 0.2s',
@@ -70,7 +70,7 @@ export default function SettingsPage() {
     display: 'block',
     fontSize: '13px',
     fontWeight: 500,
-    color: '#94a3b8',
+    color: '#64748b',
     marginBottom: '6px',
   };
 
@@ -78,7 +78,7 @@ export default function SettingsPage() {
     <div className="animate-fade-in" style={{ maxWidth: '720px' }}>
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-white">Settings</h1>
-        <p className="text-slate-500 mt-1">Manage your account preferences and configuration</p>
+        <p className="text-gray-500 mt-1">Manage your account preferences and configuration</p>
       </div>
 
       {/* Profile */}
@@ -93,7 +93,7 @@ export default function SettingsPage() {
               onChange={(e) => setProfile({ ...profile, name: e.target.value })}
               style={inputStyle}
               onFocus={(e) => (e.target.style.borderColor = '#6366f1')}
-              onBlur={(e) => (e.target.style.borderColor = '#334155')}
+              onBlur={(e) => (e.target.style.borderColor = '#94a3b8')}
             />
           </div>
           <div>
@@ -104,7 +104,7 @@ export default function SettingsPage() {
               onChange={(e) => setProfile({ ...profile, email: e.target.value })}
               style={inputStyle}
               onFocus={(e) => (e.target.style.borderColor = '#6366f1')}
-              onBlur={(e) => (e.target.style.borderColor = '#334155')}
+              onBlur={(e) => (e.target.style.borderColor = '#94a3b8')}
             />
           </div>
           <div style={{ gridColumn: '1 / -1' }}>
@@ -115,7 +115,7 @@ export default function SettingsPage() {
               onChange={(e) => setProfile({ ...profile, company: e.target.value })}
               style={inputStyle}
               onFocus={(e) => (e.target.style.borderColor = '#6366f1')}
-              onBlur={(e) => (e.target.style.borderColor = '#334155')}
+              onBlur={(e) => (e.target.style.borderColor = '#94a3b8')}
             />
           </div>
         </div>
@@ -149,14 +149,14 @@ export default function SettingsPage() {
           {notifications.map((n) => (
             <div key={n.id} className="flex items-center justify-between py-2">
               <div>
-                <p className="text-sm font-medium text-slate-200">{n.label}</p>
-                <p className="text-xs text-slate-500 mt-0.5">{n.description}</p>
+                <p className="text-sm font-medium text-gray-900">{n.label}</p>
+                <p className="text-xs text-gray-500 mt-0.5">{n.description}</p>
               </div>
               <button
                 onClick={() => toggleNotification(n.id)}
                 className="relative w-11 h-6 rounded-full transition-all duration-200 flex-shrink-0"
                 style={{
-                  backgroundColor: n.value ? '#6366f1' : '#334155',
+                  backgroundColor: n.value ? '#6366f1' : '#94a3b8',
                 }}
                 aria-label={`Toggle ${n.label}`}
                 role="switch"
@@ -177,15 +177,15 @@ export default function SettingsPage() {
         <h2 className="text-base font-semibold text-white mb-5">Appearance</h2>
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-slate-200">Dark Mode</p>
-            <p className="text-xs text-slate-500 mt-0.5">
+            <p className="text-sm font-medium text-gray-900">Dark Mode</p>
+            <p className="text-xs text-gray-500 mt-0.5">
               {isDarkMode ? 'Currently using dark theme' : 'Currently using light theme'}
             </p>
           </div>
           <button
             onClick={toggleDarkMode}
             className="relative w-11 h-6 rounded-full transition-all duration-200"
-            style={{ backgroundColor: isDarkMode ? '#6366f1' : '#334155' }}
+            style={{ backgroundColor: isDarkMode ? '#6366f1' : '#94a3b8' }}
             aria-label="Toggle dark mode"
             role="switch"
             aria-checked={isDarkMode}
@@ -218,12 +218,12 @@ export default function SettingsPage() {
                 type={apiKeyVisible ? 'text' : 'password'}
                 value={apiKey}
                 readOnly
-                style={{ ...inputStyle, flex: 1, fontFamily: 'monospace', color: '#94a3b8', cursor: 'default' }}
+                style={{ ...inputStyle, flex: 1, fontFamily: 'monospace', color: '#64748b', cursor: 'default' }}
               />
               <button
                 onClick={() => setApiKeyVisible(!apiKeyVisible)}
-                className="px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-slate-200 transition-colors"
-                style={{ backgroundColor: '#1e293b', border: '1px solid #334155', flexShrink: 0 }}
+                className="px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-gray-900 transition-colors"
+                style={{ backgroundColor: '#e2e8f0', border: '1px solid #334155', flexShrink: 0 }}
                 title={apiKeyVisible ? 'Hide' : 'Show'}
               >
                 {apiKeyVisible ? (
@@ -266,7 +266,7 @@ export default function SettingsPage() {
         }}
       >
         <h2 className="text-base font-semibold mb-2" style={{ color: '#f87171' }}>Danger Zone</h2>
-        <p className="text-sm text-slate-500 mb-5">
+        <p className="text-sm text-gray-500 mb-5">
           Permanently delete your account and all associated data. This action cannot be undone.
         </p>
         {!showDeleteConfirm ? (
@@ -299,8 +299,8 @@ export default function SettingsPage() {
               </button>
               <button
                 onClick={() => setShowDeleteConfirm(false)}
-                className="px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-slate-200 transition-colors"
-                style={{ backgroundColor: '#1e293b', border: '1px solid #334155' }}
+                className="px-4 py-2 rounded-lg text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
+                style={{ backgroundColor: '#e2e8f0', border: '1px solid #334155' }}
               >
                 Cancel
               </button>

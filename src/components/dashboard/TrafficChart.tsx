@@ -23,12 +23,12 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
     <div
       className="rounded-lg p-3 text-sm"
       style={{
-        backgroundColor: '#0f172a',
+        backgroundColor: '#ffffff',
         border: '1px solid #334155',
         boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
       }}
     >
-      <p className="text-slate-400 mb-1.5 font-medium">{label}</p>
+      <p className="text-gray-500 mb-1.5 font-medium">{label}</p>
       <div className="flex items-center gap-2">
         <span
           className="w-2 h-2 rounded-full"
@@ -53,7 +53,7 @@ export default function TrafficChart() {
     >
       <div className="mb-6">
         <h3 className="text-base font-semibold text-white">Traffic Sources</h3>
-        <p className="text-sm text-slate-500 mt-0.5">Visitor breakdown by acquisition channel</p>
+        <p className="text-sm text-gray-500 mt-0.5">Visitor breakdown by acquisition channel</p>
       </div>
 
       <ResponsiveContainer width="100%" height={260}>
